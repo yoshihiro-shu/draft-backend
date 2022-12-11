@@ -27,8 +27,8 @@ func New(c config.Configs) *RedisContext {
 }
 
 func (r RedisContext) SET(key string, i interface{}) error {
-	b, err := json.Marshal(i)
-	err = r.redisClient.Set(r.ctx, key, b, 0).Err()
+	b, _ := json.Marshal(i)
+	err := r.redisClient.Set(r.ctx, key, b, 0).Err()
 	return err
 }
 
@@ -42,8 +42,5 @@ func (r RedisContext) GET(key string, i interface{}) error {
 }
 
 func IsNotExistKey(err error) bool {
-	if err == redis.Nil {
-		return true
-	}
-	return false
+	return err == redis.Nil
 }

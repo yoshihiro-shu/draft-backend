@@ -28,12 +28,6 @@ func NewUserHandler(userUseCase usecase.UserUseCase, c *request.Context) *userHa
 	}
 }
 
-type requestUser struct {
-}
-
-type responseUser struct {
-}
-
 type loginResponse struct {
 	Token string `json:"token"`
 }

@@ -9,11 +9,15 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
+// TODO configで設定できるようにする
 const (
 	expHour   = 72
 	secretKey = "secret"
-	UserKey   = "userID"
 )
+
+type key string
+
+const UserKey key = "userID"
 
 func CreateToken(id string) string {
 	claims := jwt.MapClaims{
