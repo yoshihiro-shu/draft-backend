@@ -3,7 +3,7 @@ package request
 import (
 	"context"
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -38,7 +38,7 @@ func (c Context) DB() *pg.DB {
 func (c Context) UnmarshalFromRequest(r *http.Request, i interface{}) error {
 	defer r.Body.Close()
 
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		return err
 	}
